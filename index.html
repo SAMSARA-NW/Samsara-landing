@@ -281,7 +281,7 @@
 
     .products__grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
     }
 
@@ -1563,7 +1563,7 @@
         </div>
         <div class="product-card__body">
           <h3 class="product-card__name">Extra Virgin<br>Organic Olive Oil</h3>
-          <p class="product-card__desc">The same cold-pressed, single-origin Karoo gold — in a convenient 1L refil tin. Perfect for the everyday kitchen.</p>
+          <p class="product-card__desc">The same cold-pressed, single-origin Karoo gold — in a convenient 1L refill tin. Perfect for the everyday kitchen.</p>
           <p class="product-card__trees" id="1l-card-trees">🌿 Rehabilitates 1 olive tree</p>
           <div class="variants">
             <button class="variant-btn is-active" data-size="1l">1 Litre</button>
@@ -1601,28 +1601,6 @@
         </div>
       </article>
 
-      <!-- Product D: Ritual Health Shot -->
-      <article class="product-card reveal">
-        <div class="product-card__img-wrap">
-          <span class="product-card__ribbon">Coming Soon</span>
-          <div class="product-card__slides" data-hover-slide>
-            <img src="assets/images/shot1.jpg" alt="Ritual Health Shot" class="is-visible" loading="lazy" />
-            <img src="assets/images/shot2.jpg" alt="Ritual Health Shot" loading="lazy" />
-            <img src="assets/images/shot3.jpg" alt="Ritual Health Shot" loading="lazy" />
-            <img src="assets/images/shot4.jpg" alt="Ritual Health Shot" loading="lazy" />
-          </div>
-          <span class="product-card__badge">Box of 14</span>
-        </div>
-        <div class="product-card__body">
-          <h3 class="product-card__name">Ritual<br>Health Shot</h3>
-          <p class="product-card__desc">14 daily ritual health shots — olive oil, lemon, sceletium. Cold-pressed and raw. A morning health ritual in a box.</p>
-          <p class="product-card__trees">🌿 Rehabilitates 2 olive trees</p>
-          <a href="assets/ritual-shot-v3.pdf" target="_blank" class="product-card__learn">Learn more →</a>
-          <div class="product-card__footer">
-          </div>
-          <p style="font-size:0.78rem;color:var(--olive);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.5rem;">✦ New Product Coming Soon</p>
-        </div>
-      </article>
 
     </div>
 
@@ -1651,8 +1629,8 @@
   <div class="preorder-panel">
     <button class="preorder-close">&times;</button>
     <div id="hemp-form-view">
-      <h3>Pre-Order Hemp Infusion</h3>
-      <p class="sub">Reserve your 500ml Hemp Infused Olive Oil. We'll notify you when it's ready.</p>
+      <h3>Pre-Order Infused Olive Oil</h3>
+      <p class="sub">Reserve your 500ml Infused Olive Oil. We'll notify you when it's ready.</p>
       <div class="preorder-field"><label>Name</label><input type="text" id="hp-name" placeholder="Your full name" required /></div>
       <div class="preorder-field"><label>Email</label><input type="email" id="hp-email" placeholder="you@example.com" required /></div>
       <div class="preorder-field">
@@ -1673,67 +1651,13 @@
           <button type="button" class="qty-toggle" id="hp-plus">+</button>
         </div>
       </div>
-      <div class="preorder-total">Total: <strong id="hp-total">R380</strong></div>
+      <div class="preorder-total">Total: <strong id="hp-total">R330</strong></div>
       <button class="preorder-submit" id="hp-submit">Submit Pre-Order</button>
     </div>
     <div id="hemp-success" class="preorder-success" style="display:none;">
       <div class="check">✔️</div>
       <h3>Pre-order received!</h3>
-      <p>We’ll be in touch as soon as the Hemp Infusion is ready.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ PRE-ORDER MODAL ═══ -->
-<div id="preorder-modal">
-  <div class="preorder-backdrop"></div>
-  <div class="preorder-panel">
-    <button class="preorder-close">&times;</button>
-    <div id="preorder-form-view">
-      <h3>Pre-Order Ritual Health Shots</h3>
-      <p class="sub">Be the first to know when we launch. Reserve your box today.</p>
-      <div class="preorder-field">
-        <label>Name</label>
-        <input type="text" id="po-name" placeholder="Your full name" required />
-      </div>
-      <div class="preorder-field">
-        <label>Email</label>
-        <input type="email" id="po-email" placeholder="you@example.com" required />
-      </div>
-      <div class="preorder-field">
-        <label>Province</label>
-        <select id="po-province">
-          <option value="" disabled selected>Select province</option>
-          <option>Eastern Cape</option>
-          <option>Free State</option>
-          <option>Gauteng</option>
-          <option>KwaZulu-Natal</option>
-          <option>Limpopo</option>
-          <option>Mpumalanga</option>
-          <option>North West</option>
-          <option>Northern Cape</option>
-          <option>Western Cape</option>
-        </select>
-      </div>
-      <div class="preorder-field">
-        <label>Delivery Address</label>
-        <textarea id="po-address" placeholder="Street address, city, postal code" rows="2"></textarea>
-      </div>
-      <div class="preorder-field">
-        <label>Quantity (boxes)</label>
-        <div class="qty-row">
-          <button type="button" class="qty-toggle" id="po-minus">−</button>
-          <span class="qty-display" id="po-qty">1</span>
-          <button type="button" class="qty-toggle" id="po-plus">+</button>
-        </div>
-      </div>
-      <div class="preorder-total">Total: <strong id="po-total">R546</strong></div>
-      <button class="preorder-submit" id="po-submit">Submit Pre-Order</button>
-    </div>
-    <div id="preorder-success" class="preorder-success" style="display:none;">
-      <div class="check">✔️</div>
-      <h3>Pre-order received!</h3>
-      <p>Thank you — we’ll be in touch as soon!</p>
+      <p>We’ll be in touch as soon as the infused olive oil is ready.</p>
     </div>
   </div>
 </div>
@@ -1750,7 +1674,7 @@
       <a href="#story" class="footer__link">Our Story</a>
       <a href="#products" class="footer__link">Shop</a>
       <a href="https://www.instagram.com/niccris_samsara" target="_blank" class="footer__link">Instagram</a>
-      <a href="https://wa.me/27826532454" target="_blank" class="footer__link">WhatsApp</a>
+      <a href="https://wa.me/27828244145" target="_blank" class="footer__link">WhatsApp</a>
     </div>
     <p class="footer__copy">© 2026 Samsara · VrischGewagt Boutique Olive Farm · Swartberg Karoo, South Africa</p>
   </div>
@@ -1872,11 +1796,7 @@
   ══════════════════════════════════════════════════════════ */
   var SUPABASE_URL      = 'https://recqyhjooukkdwsrjslp.supabase.co';
   var SUPABASE_KEY      = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJlY3F5aGpvb3Vra2R3c3Jqc2xwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMjkzMTAsImV4cCI6MjA4MzcwNTMxMH0.vN0bzTBBrtSBzicjniXXyCUAdn9YIWKHmXIKMJKb0rg';
-  var PAYFAST_SANDBOX   = true;
-  var PAYFAST_URL       = PAYFAST_SANDBOX ? 'https://sandbox.payfast.co.za/eng/process' : 'https://www.payfast.co.za/eng/process';
-  var MERCHANT_ID       = '10047984';
-  var MERCHANT_KEY      = '1funhqjegwd3f';
-  var PASSPHRASE        = 'saltpassphrase';
+  // Purchases are handled by Shopify. Legacy PayFast credentials removed.
   var DELIVERY_FEE      = 100;
   var SITE_URL          = 'https://samsara-landing-psi.vercel.app';
 
@@ -2077,36 +1997,7 @@
      PAYFAST
   ══════════════════════════════════════════════════════════ */
   function submitToPayFast(orderId, name, email, total) {
-    var params = {
-      merchant_id:   MERCHANT_ID,
-      merchant_key:  MERCHANT_KEY,
-      return_url:    SITE_URL + '/?payment=success',
-      cancel_url:    SITE_URL + '/?payment=cancelled',
-      m_payment_id:  orderId,
-      amount:        parseFloat(total).toFixed(2),
-      item_name:     'Samsara Olive Oil Order',
-      name_first:    (name.split(' ')[0] || name).substring(0, 100),
-      name_last:     (name.split(' ').slice(1).join(' ') || '-').substring(0, 100),
-      email_address: email,
-    };
-    var keys  = Object.keys(params).sort();
-    var parts = keys.map(function (k) {
-      return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]).replace(/%20/g, '+');
-    });
-    if (PASSPHRASE) parts.push('passphrase=' + encodeURIComponent(PASSPHRASE).replace(/%20/g, '+'));
-    params.signature = md5(parts.join('&'));
-
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = PAYFAST_URL;
-    form.style.display = 'none';
-    Object.keys(params).forEach(function (k) {
-      var inp = document.createElement('input');
-      inp.type = 'hidden'; inp.name = k; inp.value = params[k];
-      form.appendChild(inp);
-    });
-    document.body.appendChild(form);
-    form.submit();
+    throw new Error('PayFast integration has been removed. Please contact Samsara directly to place an order.');
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -2389,24 +2280,11 @@
 })();
 </script>
 
-<!-- Pre-order modal logic -->
+<!-- Infused oil pre-order -->
 <script>
-(function () {
-  var PRICE = 546;
-  var modal = document.getElementById('preorder-modal');
-  var formView = document.getElementById('preorder-form-view');
-  var successView = document.getElementById('preorder-success');
-  var qtyEl = document.getElementById('po-qty');
-  var totalEl = document.getElementById('po-total');
-  var qty = 1;
-
-  function updateTotal() {
-    totalEl.textContent = 'R' + (qty * PRICE).toLocaleString();
-  }
-
   // Hemp pre-order modal
   (function () {
-    var HEMP_PRICE = 380;
+    var HEMP_PRICE = 330;
     var modal = document.getElementById('hemp-preorder-modal');
     var formView = document.getElementById('hemp-form-view');
     var successView = document.getElementById('hemp-success');
@@ -2421,11 +2299,14 @@
       document.body.classList.add('no-scroll');
       formView.style.display = '';
       successView.style.display = 'none';
+      document.getElementById('hp-submit').disabled = false;
+      document.getElementById('hp-submit').textContent = 'Submit Pre-Order';
     });
 
     modal.querySelector('.preorder-backdrop').addEventListener('click', function () {
       modal.classList.remove('open'); document.body.classList.remove('no-scroll');
     });
+    document.addEventListener('keydown', function (event) { if (event.key === 'Escape') { modal.classList.remove('open'); document.body.classList.remove('no-scroll'); } });
     modal.querySelector('.preorder-close').addEventListener('click', function () {
       modal.classList.remove('open'); document.body.classList.remove('no-scroll');
     });
@@ -2438,7 +2319,8 @@
       var email = document.getElementById('hp-email').value.trim();
       var province = document.getElementById('hp-province').value;
       var address = document.getElementById('hp-address').value.trim();
-      if (!name || !email || !province || !address) { alert('Please fill in all fields.'); return; }
+      if (!name || !province || !address) { alert('Please fill in all fields.'); return; }
+      if (!document.getElementById('hp-email').reportValidity()) return;
       var btn = this; btn.disabled = true; btn.textContent = 'Submitting...';
       fetch('https://recqyhjooukkdwsrjslp.supabase.co/rest/v1/pre_order_hemp', {
         method: 'POST',
@@ -2455,83 +2337,6 @@
     });
   })();
 
-  var preorderOpenBtn = document.getElementById('preorder-open-btn');
-  if (preorderOpenBtn) {
-    preorderOpenBtn.addEventListener('click', function () {
-      modal.classList.add('open');
-      document.body.classList.add('no-scroll');
-      formView.style.display = '';
-      successView.style.display = 'none';
-    });
-  }
-
-  modal.querySelector('.preorder-backdrop').addEventListener('click', close);
-  modal.querySelector('.preorder-close').addEventListener('click', close);
-
-  function close() {
-    modal.classList.remove('open');
-    document.body.classList.remove('no-scroll');
-  }
-
-  document.getElementById('po-minus').addEventListener('click', function () {
-    if (qty > 1) { qty--; qtyEl.textContent = qty; updateTotal(); }
-  });
-
-  document.getElementById('po-plus').addEventListener('click', function () {
-    if (qty < 20) { qty++; qtyEl.textContent = qty; updateTotal(); }
-  });
-
-  document.getElementById('po-submit').addEventListener('click', function () {
-    var name = document.getElementById('po-name').value.trim();
-    var email = document.getElementById('po-email').value.trim();
-    var province = document.getElementById('po-province').value;
-    var address = document.getElementById('po-address').value.trim();
-
-    if (!name || !email || !province || !address) {
-      alert('Please fill in all fields.');
-      return;
-    }
-
-    var btn = this;
-    btn.disabled = true;
-    btn.textContent = 'Submitting...';
-
-    var SB_URL = 'https://recqyhjooukkdwsrjslp.supabase.co';
-    var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJlY3F5aGpvb3Vra2R3c3Jqc2xwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMjkzMTAsImV4cCI6MjA4MzcwNTMxMH0.vN0bzTBBrtSBzicjniXXyCUAdn9YIWKHmXIKMJKb0rg';
-
-    fetch(SB_URL + '/rest/v1/pre_order_shots', {
-      method: 'POST',
-      headers: {
-        'apikey': SB_KEY,
-        'Authorization': 'Bearer ' + SB_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        province: province,
-        address: address,
-        quantity: qty
-      })
-    })
-    .then(function (res) {
-      if (res.ok) {
-        formView.style.display = 'none';
-        successView.style.display = '';
-      } else {
-        alert('Something went wrong. Please try again.');
-        btn.disabled = false;
-        btn.textContent = 'Submit Pre-Order';
-      }
-    })
-    .catch(function () {
-      alert('Connection error. Please try again.');
-      btn.disabled = false;
-      btn.textContent = 'Submit Pre-Order';
-    });
-  });
-})();
 </script>
 
 <!-- Auto-cycling slideshow for product cards -->
@@ -2551,10 +2356,11 @@
 })();
 </script>
 
+<script src="js/shopify-cart.js"></script>
 <!-- Shopify Buy Button -->
 <script type="text/javascript">
 (function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  var scriptURL = 'js/vendor/shopify-buy.js';
   if (window.ShopifyBuy) {
     if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); }
   } else { loadScript(); }
@@ -2631,7 +2437,10 @@
       }
 
       var cartOptsWithEvents = JSON.parse(JSON.stringify(cartOpts));
-      /* No cart-level event needed — we track trees ourselves */
+      cartOptsWithEvents.events = {
+        beforeRender: function (cart) { window.SamsaraCart.prepare(cart); },
+        afterRender: function (cart) { window.SamsaraCart.syncImpact(cart); }
+      };
 
       /* 5L Extra Virgin Olive Oil — 5 trees */
       ui.createComponent('product', {
@@ -2678,7 +2487,7 @@
         },
       });
 
-      /* Ritual Morning Shots — pre-order only, no Shopify embed */
+
     });
   }
 })();
@@ -2692,9 +2501,7 @@
 
   /* Called by each product's addVariantToCart with the exact tree count */
   window.__samsaraAddTrees = function (trees) {
-    totalTrees += trees;
-    showToast(trees);
-    updateBar();
+    showToast(trees); // The impact bar is derived from the actual cart, including removals.
   };
 
   function showToast(treesJustAdded) {

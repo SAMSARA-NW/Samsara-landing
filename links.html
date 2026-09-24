@@ -22,7 +22,8 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       background: #1a1208;
     }
 
@@ -117,6 +118,7 @@
 
     /* ── Buttons ── */
     .buttons {
+      min-width:0;
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -124,6 +126,8 @@
     }
 
     .btn {
+      white-space:normal;
+      min-width:0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -248,9 +252,11 @@
 
     /* make the buttons wrapper relative so we can position off it */
     .buttons {
+      min-width:0;
       position: relative;
     }
-  </style>
+  @media(max-width:700px) { .discount-nudge { position:static; transform:none; width:100%; align-items:center; margin-bottom:1rem; } .card { padding:2rem 1rem; } }
+</style>
 </head>
 <body>
   <div class="backdrop"></div>
@@ -298,12 +304,12 @@
         Organic Olive Oil
       </a>
 
-      <!-- Milli Funding -->
-      <a href="https://www.milli.org/campaign/awHBM5bjHdKV44T5fwKe?ref=share_whatsapp" target="_blank" rel="noopener" class="btn btn-secondary">
+      <!-- Get involved -->
+      <a href="about.html#get-involved" target="_blank" rel="noopener" class="btn btn-secondary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
-        Milli Funding
+        Get involved
       </a>
 
     </div>

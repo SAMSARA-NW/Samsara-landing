@@ -1,149 +1,35 @@
-# Samsara Olive Oil — Landing Page
+# Samsara Olive Oil website
 
-> "Rooted in the Karoo. Grown with Purpose."
+Live: https://samsara-landing-psi.vercel.app/index.html
 
-Premium landing page for Samsara Olive Oil, hand-built with pure HTML, CSS, and JavaScript. No frameworks. No build tools. Opens directly in a browser.
+## Current runtime (24 September 2026)
 
----
+- `index.html`: shop, Shopify Buy Button cart/checkout, infused-oil preorder.
+- `about.html`: rehabilitation progress and involvement enquiry form.
+- `links.html`: social landing links, including the involvement section.
+- `api/involvement.js`: Vercel Node function sending enquiries through Resend to Nicolas, with the visitor as Reply-To. Configure `RESEND_API_KEY` as a server-only Vercel environment variable. Never put it in browser JavaScript.
+- `js/shopify-cart.js`: missing catalogue-image fallback and impact total derived from current quantities.
+- `js/vendor/shopify-buy.js`: pinned Shopify runtime; see its adjacent README.
+- Existing infused preorders are stored in `pre_order_hemp` (legacy table name); the UI uses the approved generic infused-oil name and R330/500ml price.
+- Legacy PayFast is disabled. Shopify is the active purchasing path.
 
-## Quick Start
+## Local preview and checks
 
-```bash
-# Option 1: VS Code Live Server (recommended)
-# Open folder in VS Code → click "Go Live" in the status bar
+Static preview: `python3 -m http.server 8080` (the email API needs Vercel's server runtime).
 
-# Option 2: Python simple server
-cd samsara-landing
-python3 -m http.server 8080
-# then open http://localhost:8080
+Handler checks: `node --test tests/involvement.test.cjs`.
 
-# Option 3: Node http-server
-npx http-server . -p 8080
-```
+Before deploying, browser-check all three public pages at mobile and desktop widths; add 5L, 1L and 750ml products; change/remove quantities; reload the cart; check images and totals; follow the Shopify checkout handoff without placing a paid order; test enquiry success/failure and the infused-oil preorder validation.
 
-> **Note:** The JS uses ES modules (`type="module"`), which require a server.  
-> Direct `file://` opening will not load scripts correctly in most browsers.
+## Email protections and limits
 
----
+The handler validates email/message lengths, rejects other origins, includes a honeypot, and uses provider idempotency keys so a retry does not send the same message twice. The rate limiter is per warm function instance, not a distributed/global abuse limit. Consider managed WAF rate limiting if traffic warrants it. Successful API/provider acceptance does not by itself prove inbox receipt.
 
-## Project Structure
+## Prices
 
-```
-samsara-landing/
-├── index.html              Main page — all sections
-├── css/
-│   ├── base.css            Reset, CSS custom properties, typography
-│   ├── layout.css          Section layouts, grid, hero, footer
-│   ├── components.css      Buttons, product cards, slider, ghost messages
-│   └── animations.css      Breathing pulse, scroll reveals, shimmer
-├── js/
-│   ├── app.js              Entry point — boots all modules
-│   ├── animations.js       Particle canvas, IntersectionObserver, parallax
-│   ├── cart.js             Add-to-cart UI, ghost popups, variant selection
-│   └── slider.js           Tree rehabilitation slider calculator
-└── assets/
-    └── images/
-        ├── logo.png         Samsara tree-of-life logo
-        ├── backdrop.jpg     Sunset through olive trees (Story section bg)
-        ├── header.jpg       Farm aerial / landscape
-        ├── story.jpg        Misty olive grove
-        └── options.jpeg     5L tin + plastic bottle product shot
-```
+- 5L tin: R1,780
+- 1L tin: R360
+- 750ml: R330
+- Infused olive oil 500ml preorder: R330
 
----
-
-## Design System
-
-### Colors (CSS Custom Properties)
-
-| Variable | Value | Use |
-|---|---|---|
-| `--color-earth-dark` | `#1a1208` | Hero background, footer |
-| `--color-copper` | `#8b4513` | Accents, prices |
-| `--color-gold` | `#c9a040` | Highlights, slider, pulse rings |
-| `--color-olive` | `#6b7c3a` | Tree counter, nature accents |
-| `--color-cream` | `#f7f0e6` | Page background |
-
-### Typography
-- **Headings:** Cormorant Garamond (300/400/600 weights) — elegant, organic
-- **Body:** Lato (300/400/700) — clean, readable
-
-### The Breathing Pulse
-The hero animation — three CSS rings pulse outward with a 4-second sine-cycle using `transform: scale()` and `box-shadow` glow. The logo itself breathes with `drop-shadow`. All on `transform/opacity` only for 60fps.
-
----
-
-## Sections
-
-1. **Hero** — Full-viewport, breathing logo, particle canvas, entrance animation
-2. **Story** — Parallax backdrop image, scroll-triggered fade-in text
-3. **Mission** — Tree rehabilitation slider (R0–R10,000 range, R450/tree)
-4. **Products** — Responsive 3-column card grid with variant selectors
-5. **Footer** — Instagram + WhatsApp links
-
----
-
-## Products
-
-| Product | Variants | Price |
-|---|---|---|
-| 5L Extra Virgin Olive Oil | Tin / Plastic | R 1,780 |
-| 250ml Infused Olive Oil | Rosemary / Oregano | R 240 |
-| Ritual Health Shot | Box of 14 | R 462 |
-
-Tree impact per product (R450 = 1 tree):
-- 5L EVOO → 3 trees
-- 250ml Infused → 0 full trees (53% of one tree)
-- Ritual Shot Box → 1 tree
-
----
-
-## TODO: Celium Backend Integration
-
-Search for `TODO: Celium` in the codebase for all integration points:
-
-- `js/cart.js` — Replace `cartState` with Celium cart API calls
-- `js/cart.js` — POST `/api/cart/add` on add-to-cart
-- `js/cart.js` — GET `/api/cart` for cart badge sync
-- `index.html` — "Learn More About The Project" button — link to About page
-
----
-
-## Adding Product Photos
-
-The 5L EVOO card uses `options.jpeg`. The other two cards show a "Photo coming soon" placeholder. To add photos:
-
-1. Place images in `assets/images/`
-2. In `index.html`, replace the `<div class="product-card__image-placeholder">` blocks with:
-
-```html
-<img
-  src="assets/images/YOUR_PHOTO.jpg"
-  alt="Descriptive alt text"
-  class="product-card__image"
-  loading="lazy"
-/>
-```
-
----
-
-## Browser Support
-
-Modern browsers (Chrome 80+, Firefox 75+, Safari 13+, Edge 80+).  
-No IE support. Uses: CSS custom properties, ES modules, IntersectionObserver, Canvas API.
-
----
-
-## Git
-
-```bash
-# Initial commit already done at project creation
-git log --oneline
-
-# Stage and commit changes
-git add -A && git commit -m "your message"
-```
-
----
-
-*Built with 🌿 for Samsara · VrischGewagt Boutique Olive Farm · Swartberg Karoo*
+Nicolas approved using the 1L product photo for both 1L and 750ml website cart thumbnails on 24 September 2026. This is a website fallback; it does not upload images to the Shopify catalogue or alter hosted-checkout images.

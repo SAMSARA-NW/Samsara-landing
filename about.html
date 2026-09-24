@@ -421,7 +421,19 @@
     }
 
     .reveal.visible { opacity: 1; transform: translateY(0); }
-  </style>
+
+.involvement-form { text-align:left; color:var(--cream); }
+.involvement-form label { display:block; margin:1rem 0 .5rem; }
+.involvement-form input,.involvement-form textarea { width:100%; box-sizing:border-box; padding:.9rem; font:inherit; font-size:16px; border:1px solid var(--gold); border-radius:5px; color:#1a1208; background:#faf4eb; }
+.involvement-form textarea { resize:vertical; }
+.involvement-form input:focus,.involvement-form textarea:focus { outline:2px solid var(--gold); outline-offset:3px; }
+.involvement-form .btn { margin:1rem 0; background:var(--gold); color:#1a1208; cursor:pointer; }
+.involvement-form .btn:disabled { opacity:.6; cursor:wait; }
+.form-note { font-size:.8rem; line-height:1.6; margin-top:1rem; }
+.form-note a { color:var(--gold); overflow-wrap:anywhere; }
+.form-trap { position:absolute; left:-10000px; }
+#involvement-status { min-height:1.6em; }
+</style>
 </head>
 <body>
 
@@ -470,6 +482,7 @@
     <h2 class="section__title reveal" style="font-size:clamp(1.6rem,3.5vw,2.4rem);">Live rehabilitation progress</h2>
     <div class="section__divider reveal"></div>
 
+    <p id="block-status" role="status" class="hint">Loading rehabilitation progress…</p>
     <div class="block-grid reveal" id="block-grid"></div>
     <p class="hint">Hover over a block for details</p>
 
@@ -480,20 +493,27 @@
   </div>
 </section>
 
-<!-- ═══ SECTION 4: Fund the Project ═══ -->
-<section class="section section--story" style="text-align:center;">
-  <div class="story__bg"></div>
-  <div class="story__overlay"></div>
+<!-- Get involved -->
+<section class="section section--story" id="get-involved" style="text-align:center;">
+  <div class="story__bg"></div><div class="story__overlay"></div>
   <div class="section__inner" style="position:relative;z-index:2;max-width:640px;">
-    <span class="section__eyebrow reveal" style="color:var(--gold);">Support the Mission</span>
-    <h2 class="section__title reveal" style="color:var(--cream);font-size:clamp(1.8rem,4vw,2.8rem);">Help Fund This Project</h2>
-    <div class="section__divider reveal" style="margin:1rem auto;background:linear-gradient(to right,transparent,rgba(194,166,109,0.4),transparent);"></div>
-    <p class="reveal" style="color:rgba(250,244,235,0.7);font-size:0.95rem;line-height:1.9;margin-bottom:2rem;">
-      I'm thrilled to have partnered with <strong style="color:var(--gold);">Milli</strong> to help accelerate the rehabilitation of these olive trees. What would take years alone can happen in months with the right support. Every contribution goes directly into restoring irrigation, rebuilding soil, and bringing these trees back to life. Any support — big or small — is deeply appreciated and makes a real difference on the ground.
-    </p>
-    <a href="https://donate.millicrowd.com/campaign/awHBM5bjHdKV44T5fwKe" target="_blank" class="btn reveal" style="background:var(--gold);color:var(--bg-dark);font-size:0.85rem;padding:1em 2.5em;">Help Fund My Project</a>
+    <span class="section__eyebrow" style="color:var(--gold);">Grow with us</span>
+    <h2 class="section__title" style="color:var(--cream);font-size:clamp(1.8rem,4vw,2.8rem);">Interested in getting involved?</h2>
+    <p style="color:var(--cream);line-height:1.8;margin:1rem 0 2rem;">Get in touch. Tell us a little about who you are and how you'd like to be part of the journey.</p>
+    <form id="involvement-form" class="involvement-form">
+      <label for="involvement-email">Your email</label>
+      <input id="involvement-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required />
+      <label for="involvement-description">A little about you</label>
+      <textarea id="involvement-description" name="description" rows="4" minlength="10" maxlength="2000" placeholder="Who are you, and how would you like to get involved?" required></textarea>
+      <div class="form-trap" aria-hidden="true"><label for="involvement-website">Leave this blank</label><input id="involvement-website" name="website" tabindex="-1" autocomplete="off" /></div>
+      <p class="form-note">Your message goes directly to Nicolas. Your email will only be used to respond to your enquiry.</p>
+      <button class="btn" type="submit">Get in touch</button>
+      <p id="involvement-status" role="status" aria-live="polite"></p>
+      <p class="form-note">You can also email <a href="mailto:nicolas.criticos98@gmail.com">nicolas.criticos98@gmail.com</a>.</p>
+    </form>
   </div>
 </section>
+<script src="js/involvement.js" defer></script>
 
 <!-- Footer -->
 <footer class="footer">
@@ -501,7 +521,7 @@
     <a href="index.html#story" class="footer__link">Our Story</a>
     <a href="index.html#products" class="footer__link">Shop</a>
     <a href="https://www.instagram.com/niccris_samsara" target="_blank" class="footer__link">Instagram</a>
-    <a href="mailto:nicolas.criticos98@gmail.com" class="footer__link">Contact</a>
+    <a href="https://wa.me/27828244145" target="_blank" rel="noopener" class="footer__link">WhatsApp</a>
   </div>
   <p class="footer__copy">© 2026 Samsara · VrischGewagt Boutique Olive Farm · Swartberg Karoo, South Africa</p>
 </footer>
@@ -547,6 +567,8 @@
     return h;
   }
 
+  function escapeHtml(value) { return String(value == null ? '' : value).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+
   function render(blocks) {
     var g = document.getElementById('block-grid');
     if (!g) return;
@@ -556,15 +578,15 @@
     g.innerHTML = blocks.map(function (b, i) {
       return '<div class="block-card' + (i >= 5 ? ' flip' : '') + '">' +
         '<div class="block-card__head">' +
-          '<span class="block-card__name">' + b.name + '</span>' +
+          '<span class="block-card__name">' + escapeHtml(b.name) + '</span>' +
           '<span class="block-card__dot ' + (b.irrigation_status === 'restored' ? 'dot-green' : 'dot-grey') + '"></span>' +
         '</div>' +
         '<span class="block-card__emoji">' + emoji(b.irrigation_status, b.health_rating) + '</span>' +
         '<div class="block-card__pips">' + pips(b.health_rating || 0) + '</div>' +
         '<div class="block-card__trees">~' + (b.tree_count || 500) + ' trees</div>' +
         '<div class="block-card__tip">' +
-          '<div class="tip__label">' + b.name + '</div>' +
-          '<div class="tip__note">' + (b.notes || 'No notes yet.') + '</div>' +
+          '<div class="tip__label">' + escapeHtml(b.name) + '</div>' +
+          '<div class="tip__note">' + escapeHtml(b.notes || 'No notes yet.') + '</div>' +
           '<div class="tip__detail">💧 ' + (b.irrigation_status === 'restored' ? 'Irrigation restored' : 'Not yet started') +
           '<br>📊 Health: ' + hpLabel(b.health_rating) + '</div>' +
         '</div>' +
@@ -575,12 +597,13 @@
   var sb = window.supabase ? window.supabase.createClient(SB_URL, SB_KEY) : null;
   if (sb) {
     sb.from('rehab_blocks').select('*').then(function (res) {
-      if (res.data && res.data.length) render(res.data);
+      if (res.data && res.data.length) { render(res.data); document.getElementById('block-status').textContent = 'Latest recorded rehabilitation progress'; }
       else fallback();
     }).catch(fallback);
   } else { fallback(); }
 
   function fallback() {
+    document.getElementById('block-status').textContent = 'Live updates are unavailable. Showing a saved overview, which may be out of date.';
     render([
       { name:'Block 1', irrigation_status:'restored', health_rating:3, tree_count:500, notes:'Pilot block — trees responding' },
       { name:'Block 2', irrigation_status:'restored', health_rating:2, tree_count:500, notes:'Pilot block — slower response' },
