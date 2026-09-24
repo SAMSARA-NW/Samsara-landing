@@ -2428,11 +2428,6 @@
       /* ── Event hooks: per-product tree counts ── */
       function makeProductOpts(trees) {
         var opts = JSON.parse(JSON.stringify(productOpts));
-        opts.events = {
-          addVariantToCart: function () {
-            if (window.__samsaraAddTrees) window.__samsaraAddTrees(trees);
-          }
-        };
         return opts;
       }
 

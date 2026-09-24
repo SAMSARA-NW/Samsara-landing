@@ -24,6 +24,8 @@
         var product = productFor(item);
         return total + (product ? product.trees * item.quantity : 0);
       }, 0);
+      if (cart.__samsaraTrees != null && count > cart.__samsaraTrees && window.__samsaraAddTrees) window.__samsaraAddTrees(count - cart.__samsaraTrees);
+      cart.__samsaraTrees = count;
       document.getElementById('tree-impact-count').textContent = count;
       document.getElementById('tree-impact-bar').classList.toggle('visible', count > 0);
     }
