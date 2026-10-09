@@ -667,6 +667,12 @@
     }
 
     .product-card__desc {
+      /* Keep descriptions as readable, centred blocks within each existing card. */
+      display: block;
+      width: 100%;
+      max-width: 34ch;
+      margin-inline: auto;
+      text-align: center;
       font-size: 0.875rem;
       color: var(--muted);
       line-height: 1.7;
@@ -845,7 +851,7 @@
     }
 
     /* ── CART ICON ─────────────────────────────────────────── */
-    /* Custom cart button hidden — using Shopify cart instead */
+    /* Custom cart button hidden — using Celium cart instead */
     #cart-btn {
       display: none !important;
       position: fixed;
@@ -1548,7 +1554,7 @@
               <small>per 5L</small>
             </div>
           </div>
-          <div id="shopify-component-5l-evoo"></div>
+          <div id="celium-component-5l-evoo"><div data-celium-product="5l-extra-virgin-organic-olive-oil" data-layout="button" data-show-image="false" data-show-title="false" data-show-price="false" data-show-quantity="false" data-button-text="Add to cart" data-button-bg="#1a1208" data-button-color="#c2a66d" data-radius="4"><p role="status">Loading checkout…</p></div></div>
         </div>
       </article>
 
@@ -1563,7 +1569,7 @@
         </div>
         <div class="product-card__body">
           <h3 class="product-card__name">Extra Virgin<br>Organic Olive Oil</h3>
-          <p class="product-card__desc">The same cold-pressed, single-origin Karoo gold — in a convenient 1L refill tin. Perfect for the everyday kitchen.</p>
+          <p class="product-card__desc" id="1l-card-desc">The same cold-pressed, single-origin Karoo gold — in a convenient 1L refill tin. Perfect for the everyday kitchen.</p>
           <p class="product-card__trees" id="1l-card-trees">🌿 Rehabilitates 1 olive tree</p>
           <div class="variants">
             <button class="variant-btn is-active" data-size="1l">1 Litre</button>
@@ -1575,8 +1581,8 @@
               <small id="1l-card-price-label">per 1L</small>
             </div>
           </div>
-          <div id="shopify-component-1l-evoo"></div>
-          <div id="shopify-component-750ml-evoo" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
+          <div id="celium-component-1l-evoo"><div data-celium-product="1l-extra-virgin-organic-olive-oil" data-layout="button" data-show-image="false" data-show-title="false" data-show-price="false" data-show-quantity="false" data-button-text="Add to cart" data-button-bg="#1a1208" data-button-color="#c2a66d" data-radius="4"><p role="status">Loading checkout…</p></div></div>
+          <div id="celium-component-750ml-evoo" hidden><div data-celium-product="750ml-extra-virgin-organic-olive-oil" data-layout="button" data-show-image="false" data-show-title="false" data-show-price="false" data-show-quantity="false" data-button-text="Add to cart" data-button-bg="#1a1208" data-button-color="#c2a66d" data-radius="4"><p role="status">Loading checkout…</p></div></div>
         </div>
       </article>
 
@@ -1682,7 +1688,7 @@
 
 <!-- Tree impact bar -->
 <div id="tree-impact-bar">
-  🌿 Your order is helping restore <strong id="tree-impact-count">0</strong> olive trees
+  🌿 Your order will help rehabilitate <strong id="tree-impact-count">0</strong> <span id="tree-impact-label">olive trees</span>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -1796,7 +1802,7 @@
   ══════════════════════════════════════════════════════════ */
   var SUPABASE_URL      = 'https://recqyhjooukkdwsrjslp.supabase.co';
   var SUPABASE_KEY      = 'sb_publishable_5VfaI1u0xc9caI-F9D91mQ_g_i0If8N';
-  // Purchases are handled by Shopify. Legacy PayFast credentials removed.
+  // Purchases are handled by Celium. Legacy PayFast credentials removed.
   var DELIVERY_FEE      = 100;
   var SITE_URL          = 'https://samsara-landing-psi.vercel.app';
 
@@ -2356,145 +2362,15 @@
 })();
 </script>
 
-<script src="js/shopify-cart.js"></script>
-<!-- Shopify Buy Button -->
-<script type="text/javascript">
-(function () {
-  var scriptURL = 'js/vendor/shopify-buy.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); }
-  } else { loadScript(); }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'awgpkp-2p.myshopify.com',
-      storefrontAccessToken: '85955ae230346be1431e5cc8fa30365b',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      var btnStyle = {
-        "font-family": "Inter, sans-serif",
-        "font-size": "0.75rem",
-        "font-weight": "500",
-        "letter-spacing": "0.08em",
-        "padding-top": "0.65em",
-        "padding-bottom": "0.65em",
-        "padding-left": "1.4em",
-        "padding-right": "1.4em",
-        "border-radius": "4px",
-        "background-color": "#1a1208",
-        "color": "#c2a66d",
-        ":hover": { "background-color": "#2a1e0e" },
-        ":focus": { "background-color": "#2a1e0e" }
-      };
-      var productOpts = {
-        "styles": {
-          "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } },
-          "button": btnStyle,
-          "quantityInput": { "font-size": "0.75rem", "padding-top": "0.65em", "padding-bottom": "0.65em" }
-        },
-        "contents": { "img": false, "button": false, "buttonWithQuantity": true, "title": false, "price": false },
-        "text": { "button": "Add to cart" }
-      };
-      var cartOpts = {
-        "styles": {
-          "button": {
-            "font-family": "Inter, sans-serif", "font-size": "0.8rem", "font-weight": "600",
-            "letter-spacing": "0.12em", "border-radius": "4px",
-            "background-color": "#c2a66d", "color": "#1a1208",
-            ":hover": { "background-color": "#d4b87a" }, ":focus": { "background-color": "#d4b87a" }
-          }
-        },
-        "text": { "total": "Subtotal", "button": "Checkout" },
-        "popup": false
-      };
-      var toggleOpts = {
-        "styles": {
-          "toggle": { "font-family": "Inter, sans-serif", "background-color": "#1a1208", ":hover": { "background-color": "#2a1e0e" }, ":focus": { "background-color": "#2a1e0e" } },
-          "count": { "font-size": "0.68rem", "color": "#1a1208", "background-color": "#c2a66d" }
-        }
-      };
-      var modalOpts = {
-        "contents": { "img": false, "imgWithCarousel": true, "button": false, "buttonWithQuantity": true },
-        "styles": { "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } } },
-        "text": { "button": "Add to cart" }
-      };
-
-      /* ── Event hooks: per-product tree counts ── */
-      function makeProductOpts(trees) {
-        var opts = JSON.parse(JSON.stringify(productOpts));
-        return opts;
-      }
-
-      var cartOptsWithEvents = JSON.parse(JSON.stringify(cartOpts));
-      cartOptsWithEvents.events = {
-        beforeRender: function (cart) { window.SamsaraCart.prepare(cart); },
-        afterRender: function (cart) { window.SamsaraCart.syncImpact(cart); }
-      };
-
-      /* 5L Extra Virgin Olive Oil — 5 trees */
-      ui.createComponent('product', {
-        id: '9105424679140',
-        node: document.getElementById('shopify-component-5l-evoo'),
-        moneyFormat: 'R%20%7B%7Bamount%7D%7D',
-        options: {
-          "product": makeProductOpts(5),
-          "productSet": { "styles": { "products": { "@media (min-width: 601px)": { "margin-left": "0px" } } } },
-          "modalProduct": modalOpts,
-          "option": {},
-          "cart": cartOptsWithEvents,
-          "toggle": toggleOpts
-        },
-      });
-
-      /* 1L Extra Virgin Olive Oil — 1 tree */
-      ui.createComponent('product', {
-        id: '9105424580836',
-        node: document.getElementById('shopify-component-1l-evoo'),
-        moneyFormat: 'R%20%7B%7Bamount%7D%7D',
-        options: {
-          "product": makeProductOpts(1),
-          "productSet": { "styles": { "products": { "@media (min-width: 601px)": { "margin-left": "0px" } } } },
-          "modalProduct": modalOpts,
-          "option": {},
-          "cart": cartOptsWithEvents,
-          "toggle": toggleOpts
-        },
-      });
-
-      /* 750ml Extra Virgin Olive Oil — 1 tree (pre-rendered, revealed on variant click) */
-      ui.createComponent('product', {
-        id: '9105424777444',
-        node: document.getElementById('shopify-component-750ml-evoo'),
-        moneyFormat: 'R%20%7B%7Bamount%7D%7D',
-        options: {
-          "product": makeProductOpts(1),
-          "productSet": { "styles": { "products": { "@media (min-width: 601px)": { "margin-left": "0px" } } } },
-          "modalProduct": modalOpts,
-          "option": {},
-          "cart": cartOptsWithEvents,
-          "toggle": toggleOpts
-        },
-      });
-
-
-    });
-  }
-})();
-</script>
+<!-- Shared Celium cart; compact buttons retain the existing product cards. -->
+<script src="js/celium-cart.js"></script>
 
 <!-- ═══ TREE IMPACT: Accurate per-product tree tracking ═══ -->
 <script>
 (function () {
-  var totalTrees = 0;
   var toastDebounce = 0;
 
-  /* Called by each product's addVariantToCart with the exact tree count */
+  /* Called only after Celium confirms an increase in the cart's tree impact. */
   window.__samsaraAddTrees = function (trees) {
     showToast(trees); // The impact bar is derived from the actual cart, including removals.
   };
@@ -2507,7 +2383,7 @@
     var label = treesJustAdded === 1 ? '1 olive tree' : treesJustAdded + ' olive trees';
     var toast = document.createElement('div');
     toast.className = 'ghost-toast';
-    toast.innerHTML = '<span>🌿</span><span>+' + label + ' rehabilitated</span>';
+    toast.innerHTML = '<span>🌿</span><span>+' + label + ' supported by your order</span>';
     container.appendChild(toast);
     setTimeout(function () {
       toast.classList.add('out');
@@ -2515,17 +2391,6 @@
     }, 3500);
   }
 
-  function updateBar() {
-    var bar = document.getElementById('tree-impact-bar');
-    var num = document.getElementById('tree-impact-count');
-    if (!bar || !num) return;
-    if (totalTrees > 0) {
-      num.textContent = totalTrees;
-      bar.classList.add('visible');
-    } else {
-      bar.classList.remove('visible');
-    }
-  }
 })();
 </script>
 
@@ -2535,34 +2400,11 @@
   var PRICES = { '1l':    { amount: 'R360', label: 'per 1L',    trees: '🌿 Rehabilitates 1 olive tree', badge: '1 Litre Tin'   },
                  '750ml': { amount: 'R330', label: 'per 750ml', trees: '🌿 Rehabilitates 1 olive tree', badge: '750ml Bottle'  } };
 
-  /* 750ml div sits off-screen at load (position:absolute;left:-9999px) so
-     Shopify SDK can render into it. On click we move it into normal flow. */
-  function show750() {
-    var el = document.getElementById('shopify-component-750ml-evoo');
-    if (!el) return;
-    el.style.position = '';
-    el.style.left = '';
-    el.style.width = '';
-    el.style.height = '';
-    el.style.overflow = '';
-  }
-  function hide750() {
-    var el = document.getElementById('shopify-component-750ml-evoo');
-    if (!el) return;
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
-    el.style.width = '1px';
-    el.style.height = '1px';
-    el.style.overflow = 'hidden';
-  }
-  function show1l() {
-    var el = document.getElementById('shopify-component-1l-evoo');
-    if (el) { el.style.position = ''; el.style.left = ''; el.style.width = ''; el.style.height = ''; el.style.overflow = ''; }
-  }
-  function hide1l() {
-    var el = document.getElementById('shopify-component-1l-evoo');
-    if (el) { el.style.position = 'absolute'; el.style.left = '-9999px'; el.style.width = '1px'; el.style.height = '1px'; el.style.overflow = 'hidden'; }
-  }
+  /* Wrapper visibility preserves each embedded button and its internal state. */
+  function show750() { document.getElementById('celium-component-750ml-evoo').hidden = false; }
+  function hide750() { document.getElementById('celium-component-750ml-evoo').hidden = true; }
+  function show1l() { document.getElementById('celium-component-1l-evoo').hidden = false; }
+  function hide1l() { document.getElementById('celium-component-1l-evoo').hidden = true; }
 
   document.querySelectorAll('[data-size]').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -2584,6 +2426,7 @@
       if (treesEl) treesEl.textContent = p.trees;
       var badgeEl = document.getElementById('1l-card-badge');
       if (badgeEl) badgeEl.textContent = p.badge;
+      document.getElementById('1l-card-desc').textContent = 'The same cold-pressed, single-origin Karoo gold — in a convenient ' + (size === '1l' ? '1L refill tin' : '750ml bottle') + '. Perfect for the everyday kitchen.';
     });
   });
 })();
